@@ -1,25 +1,30 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
+  "manifest_version": 2,
+
+  "name": "My Extension",
+  "description": "This extension is a starting point to create a real Chrome extension",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Open the popup"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-j9Zk8ChtHpGGAinRTY9N6FdxGsxrwoYWQhOpsruU748='; object-src 'self'",
+
+  "background" : {
+    "scripts": ["selection.js"],
+    "type": "module"
+  },
+  "content_scripts" : [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "matches": [ "<all_urls>" ],
+      "css": ["inject.css"],
+      "js": ["inject.js"]
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "permissions": [
+      "activeTab",
+      "background",
+      "contextMenus"
+  ]
 }
